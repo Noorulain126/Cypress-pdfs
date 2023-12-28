@@ -1,0 +1,29 @@
+{
+  "name": "cypresspdfproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:run": "cypress run",
+    "cypress:report": "mochawesome-merge cypress/reports/mochawesome/*.json > report.json",
+  "cypress:merge": "marge report.json",
+  "clean:report" : "del .\\cypress\\reports\\mochawesome\\*.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.6.2",
+    "fs-extra": "^11.2.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "pdfjs-dist": "^4.0.269"
+  },
+  "dependencies": {
+    "cypress-audit": "^1.1.0",
+    "fs": "^0.0.1-security",
+    "pdf-parse": "^1.1.1"
+  },
+  "description": ""
+}

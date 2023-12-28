@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-12-27T09:17:26.147Z",
+    "end": "2023-12-27T09:17:28.332Z",
+    "duration": 2185,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2a944fc2-d686-4a06-b386-2dfef2725b9f",
+      "title": "",
+      "fullFile": "cypress\\e2e\\spec.cy.js",
+      "file": "cypress\\e2e\\spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "709ac1a9-b884-44ce-be04-c5fe90a3df59",
+          "title": "PDF Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Find Duplicates",
+              "fullTitle": "PDF Test Find Duplicates",
+              "timedOut": null,
+              "duration": 2045,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const jsonFilePath = 'cypress/pdfs/json/output.json';\ncy.readFile(jsonFilePath).then(jsonData => {\n  const paragraphs = jsonData.paragraphs;\n  const paragraphsByDoctor = splitParagraphsByDoctor(paragraphs);\n  Object.entries(paragraphsByDoctor).forEach(([doctor, doctorParagraphs]) => {\n    const duplicateTwitterLinks = findDuplicateLinks(doctorParagraphs, 'Twitter');\n    const duplicateFacebookLinks = findDuplicateLinks(doctorParagraphs, 'Facebook');\n    const duplicateInstagramLinks = findDuplicateLinks(doctorParagraphs, 'Instagram');\n    if (duplicateTwitterLinks.length > 0 || duplicateFacebookLinks.length > 0) {\n      cy.log(`Duplicate Twitter links under ${doctor}:`);\n      cy.log(duplicateTwitterLinks);\n      cy.log(`Duplicate Facebook links under ${doctor}:`);\n      cy.log(duplicateFacebookLinks);\n      cy.log(`Duplicate Instagram links under ${doctor}:`);\n      cy.log(duplicateInstagramLinks);\n      const twitterOutputFilePath = `cypress/pdfs/text/${doctor}_twitter_output.txt`;\n      const facebookOutputFilePath = `cypress/pdfs/text/${doctor}_facebook_output.txt`;\n      const instagramOutputFilePath = `cypress/pdfs/text/${doctor}_instagram_output.txt`;\n      cy.writeFile(twitterOutputFilePath, duplicateTwitterLinks.join('\\n'));\n      cy.log(`Duplicated Twitter links saved to ${twitterOutputFilePath}`);\n      cy.writeFile(facebookOutputFilePath, duplicateFacebookLinks.join('\\n'));\n      cy.log(`Duplicated Facebook links saved to ${facebookOutputFilePath}`);\n      cy.writeFile(instagramOutputFilePath, duplicateInstagramLinks.join('\\n'));\n      cy.log(`Duplicated Instagram links saved to ${instagramOutputFilePath}`);\n      cy.readFile(twitterOutputFilePath).then(content => {\n        cy.log(`Content of ${doctor}'s Twitter output file:`);\n        cy.log(content);\n      });\n    }\n  });\n});",
+              "err": {},
+              "uuid": "bc96197c-5a5e-4163-9b8d-9dd347bbb791",
+              "parentUUID": "709ac1a9-b884-44ce-be04-c5fe90a3df59",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "bc96197c-5a5e-4163-9b8d-9dd347bbb791"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2045,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
